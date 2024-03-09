@@ -46,13 +46,17 @@ for codificacao_desconhecida in codificacoes_desconhecidas:
     correspondencias = face_recognition.compare_faces(codificacoes_conhecidas, codificacao_desconhecida)
 
     nome_correspondente = "Desconhecido"  # Defina um nome padrão caso o rosto não seja reconhecido
-
+    achou = 0
     for i, correspondencia in enumerate(correspondencias):
         if correspondencia:
             nome_correspondente = nomes_conhecidos[i]
-            print("Reconheceu!")
+            achou=1
             break  # Pare de procurar assim que encontrar uma correspondência
 
+    if(achou):
+        print("Reconheceu!")
+    else:
+        print("Imagem não encontrada")
     nomes_correspondentes.append(nome_correspondente)
 
 # Desenhe retângulos ao redor dos rostos na imagem desconhecida e coloque os nomes
